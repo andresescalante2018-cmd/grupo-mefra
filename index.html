@@ -1,12 +1,791 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grupo Mefra</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grupo Mefra ERP | Prototipo de interfaz</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-   <h1>Grupo Mefra</h1> 
+
+<!-- Controladores de estado (CSS puro). Prototipo visual: la lógica real vive en el backend. -->
+<input type="radio" name="app-view" id="view-login" class="ctrl" checked>
+<input type="radio" name="app-view" id="view-recovery" class="ctrl">
+<input type="radio" name="app-view" id="view-erp" class="ctrl">
+<input type="checkbox" id="toggle-pass" class="ctrl">
+
+<input type="radio" name="erp-mod" id="mod-dashboard" class="ctrl" checked>
+<input type="radio" name="erp-mod" id="mod-productos" class="ctrl">
+<input type="radio" name="erp-mod" id="mod-clientes-prov" class="ctrl">
+<input type="radio" name="erp-mod" id="mod-compras" class="ctrl">
+<input type="radio" name="erp-mod" id="mod-inventario" class="ctrl">
+<input type="radio" name="erp-mod" id="mod-ventas-pos" class="ctrl">
+<input type="radio" name="erp-mod" id="mod-facturacion" class="ctrl">
+<input type="radio" name="erp-mod" id="mod-finanzas" class="ctrl">
+<input type="radio" name="erp-mod" id="mod-contabilidad" class="ctrl">
+<input type="radio" name="erp-mod" id="mod-rrhh" class="ctrl">
+<input type="radio" name="erp-mod" id="mod-reportes" class="ctrl">
+<input type="radio" name="erp-mod" id="mod-admin" class="ctrl">
+
+<input type="radio" name="prod-layout" id="prod-cards" class="ctrl" checked>
+<input type="radio" name="prod-layout" id="prod-table" class="ctrl">
+
+<input type="radio" name="prod-tab" id="ptab-1" class="ctrl" checked>
+<input type="radio" name="prod-tab" id="ptab-2" class="ctrl">
+<input type="radio" name="prod-tab" id="ptab-3" class="ctrl">
+<input type="radio" name="prod-tab" id="ptab-4" class="ctrl">
+<input type="radio" name="prod-tab" id="ptab-5" class="ctrl">
+<input type="radio" name="prod-tab" id="ptab-6" class="ctrl">
+<input type="radio" name="prod-tab" id="ptab-7" class="ctrl">
+<input type="radio" name="prod-tab" id="ptab-8" class="ctrl">
+<input type="radio" name="prod-tab" id="ptab-9" class="ctrl">
+<input type="radio" name="prod-tab" id="ptab-10" class="ctrl">
+<input type="radio" name="prod-tab" id="ptab-11" class="ctrl">
+
+<input type="radio" name="sar-fmt" id="sar-carta" class="ctrl" checked>
+<input type="radio" name="sar-fmt" id="sar-media" class="ctrl">
+<input type="radio" name="sar-fmt" id="sar-ticket" class="ctrl">
+
+<input type="radio" name="fin-tab" id="fin-caja" class="ctrl" checked>
+<input type="radio" name="fin-tab" id="fin-bancos" class="ctrl">
+<input type="radio" name="fin-tab" id="fin-cxc" class="ctrl">
+<input type="radio" name="fin-tab" id="fin-cxp" class="ctrl">
+<input type="radio" name="fin-tab" id="fin-gastos" class="ctrl">
+
+<!-- ACCESO -->
+<div class="auth-screen">
+  <div class="auth-container">
+    <div class="auth-info-panel">
+      <div class="url-bar">https://grupomefra.hn</div>
+      <div class="logo-showcase"><img src="image.jpg" alt="Logotipo de Grupo Mefra" class="company-logo-lg"></div>
+      <h2>Grupo Mefra ERP</h2>
+      <p class="auth-tagline">Ventas, inventario, compras, finanzas, contabilidad y personal de Grupo Mefra S. de R.L. en una sola plataforma web.</p>
+      <div class="config-summary-box">
+        <h4>Configuración inicial</h4>
+        <div class="config-grid">
+          <div><span>Actividad</span> <strong>Comercial y agropecuaria</strong></div>
+          <div><span>Ubicación</span> <strong>Guaimaca, Honduras</strong></div>
+          <div><span>Moneda</span> <strong>Lempiras (L)</strong></div>
+          <div><span>Inventario</span> <strong>Promedio ponderado</strong></div>
+          <div><span>Contabilidad</span> <strong>Manual integrada</strong></div>
+          <div><span>Sucursales</span> <strong>1 (lista para más)</strong></div>
+        </div>
+      </div>
+      <div class="security-badges"><span>Contraseñas con hash</span><span>HTTPS</span><span>Bitácora de auditoría</span><span>Respaldos externos</span></div>
+    </div>
+
+    <div class="auth-form-panel">
+      <div class="login-box">
+        <div class="form-header">
+          <h1>Iniciar sesión</h1>
+          <p>Ingresa con tu usuario o correo corporativo. Tu rol y permisos se asignan en el servidor.</p>
+        </div>
+        <form class="erp-form" action="#" onsubmit="return false">
+          <div class="field-group">
+            <label for="user-email">Usuario o correo electrónico</label>
+            <input type="text" id="user-email" placeholder="nombre@grupomefra.hn" autocomplete="username">
+          </div>
+          <div class="field-group">
+            <div class="label-row">
+              <label for="user-pass-hidden">Contraseña</label>
+              <label for="toggle-pass" class="toggle-pass-btn">Mostrar u ocultar</label>
+            </div>
+            <div class="pass-wrapper">
+              <input type="password" id="user-pass-hidden" class="input-pass-masked" placeholder="Contraseña" autocomplete="current-password">
+              <input type="text" id="user-pass-text" class="input-pass-visible" placeholder="Contraseña" autocomplete="off">
+            </div>
+          </div>
+          <div class="field-group">
+            <label for="user-2fa">Código de verificación (obligatorio para administradores)</label>
+            <input type="text" id="user-2fa" inputmode="numeric" maxlength="6" placeholder="6 dígitos">
+          </div>
+          <div class="auth-validation-note">Tras 5 intentos fallidos la cuenta se bloquea temporalmente. Cada acceso, exitoso o fallido, queda en la bitácora.</div>
+          <div class="auth-links">
+            <label for="view-recovery" class="link-recovery">¿Olvidaste tu contraseña?</label>
+          </div>
+          <label for="view-erp" class="btn-submit-erp">Entrar al sistema</label>
+          <p class="demo-note">Vista de demostración: el botón solo navega. La autenticación real la valida el servidor.</p>
+        </form>
+      </div>
+
+      <div class="recovery-box">
+        <div class="form-header">
+          <h1>Restablecer contraseña</h1>
+          <p>Enviaremos un enlace de un solo uso y con vencimiento al correo registrado. La solicitud queda en la bitácora.</p>
+        </div>
+        <div class="field-group">
+          <label for="rec-email">Correo registrado</label>
+          <input type="email" id="rec-email" placeholder="usuario@grupomefra.hn">
+        </div>
+        <div class="recovery-actions">
+          <label for="view-login" class="btn-submit-erp">Enviar enlace</label>
+          <label for="view-login" class="btn-back-login">Volver al inicio de sesión</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SISTEMA -->
+<div class="erp-shell">
+  <aside class="erp-sidebar">
+    <div class="sidebar-brand">
+      <img src="image.jpg" alt="Grupo Mefra" class="sidebar-logo-img">
+      <div class="sidebar-company-meta"><strong>Grupo Mefra S. de R.L.</strong><span>Sucursal 01, Guaimaca</span></div>
+    </div>
+    <nav class="sidebar-menu">
+      <span class="menu-divider">Operaciones</span>
+      <label for="mod-dashboard" class="menu-link link-dashboard">Dashboard</label>
+      <label for="mod-ventas-pos" class="menu-link link-ventas-pos">Ventas y POS</label>
+      <label for="mod-facturacion" class="menu-link link-facturacion">Facturación</label>
+      <label for="mod-clientes-prov" class="menu-link link-clientes-prov">Clientes y proveedores</label>
+      <label for="mod-productos" class="menu-link link-productos">Productos</label>
+      <label for="mod-inventario" class="menu-link link-inventario">Inventario</label>
+      <label for="mod-compras" class="menu-link link-compras">Compras</label>
+      <span class="menu-divider">Administración financiera</span>
+      <label for="mod-finanzas" class="menu-link link-finanzas">Caja, bancos, CxC, CxP, gastos</label>
+      <label for="mod-contabilidad" class="menu-link link-contabilidad">Contabilidad y activos fijos</label>
+      <label for="mod-reportes" class="menu-link link-reportes">Reportes y envíos</label>
+      <span class="menu-divider">Recursos humanos</span>
+      <label for="mod-rrhh" class="menu-link link-rrhh">Personal y nómina</label>
+      <span class="menu-divider">Sistema</span>
+      <label for="mod-admin" class="menu-link link-admin">Usuarios, aprobaciones y bitácora</label>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sar-status-card">
+        <small>Autorización fiscal (dato de ejemplo)</small>
+        <code>000-000-01-00000001</code>
+        <code>000-000-01-00000050</code>
+        <span>Vence 04/05/2027. Validar con el SAR antes de emitir.</span>
+      </div>
+      <label for="view-login" class="btn-exit-session">Cerrar sesión</label>
+    </div>
+  </aside>
+
+  <div class="erp-main">
+    <header class="erp-topbar">
+      <div class="topbar-left">
+        <span class="status-dot-live">En línea</span>
+        <span class="topbar-chip">Moneda: <strong>L</strong></span>
+        <span class="topbar-chip">ISV base: <strong>15%</strong></span>
+        <span class="topbar-chip demo-chip">Datos de demostración</span>
+      </div>
+      <div class="topbar-right">
+        <div class="active-session-user">
+          <div><strong>Administrador 1</strong><small>Guaimaca</small></div>
+          <div class="avatar-circle">GM</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- DASHBOARD -->
+    <section class="erp-section sec-dashboard">
+      <div class="section-title-bar">
+        <div><h1>Dashboard</h1><p>Resumen según tus permisos. Cifras de ejemplo.</p></div>
+        <div class="header-badges"><span class="badge-green">Último respaldo: hoy 02:00</span></div>
+      </div>
+      <div class="kpi-16-grid">
+        <div class="kpi-box"><small>Ventas del día</small><strong>L 18,450.00</strong><span class="up">+12.4% vs. ayer</span></div>
+        <div class="kpi-box"><small>Ventas del mes</small><strong>L 342,890.00</strong><span class="up">+18.1%</span></div>
+        <div class="kpi-box"><small>Compras del mes</small><strong>L 198,400.00</strong><span>14 órdenes</span></div>
+        <div class="kpi-box"><small>Cuentas por cobrar</small><strong>L 86,200.00</strong><span class="warn">9 clientes</span></div>
+        <div class="kpi-box"><small>Cuentas por pagar</small><strong>L 54,120.00</strong><span>2 proveedores</span></div>
+        <div class="kpi-box"><small>Saldo de caja</small><strong>L 19,450.00</strong><span>Fondo L 1,000</span></div>
+        <div class="kpi-box"><small>Saldos bancarios</small><strong>L 412,680.00</strong><span>2 cuentas</span></div>
+        <div class="kpi-box"><small>Valor del inventario</small><strong>L 685,340.00</strong><span>Promedio ponderado</span></div>
+        <div class="kpi-box border-alert"><small>Existencias bajas</small><strong>12 productos</strong><span class="danger">Bajo punto de reposición</span></div>
+        <div class="kpi-box border-alert"><small>Agotados</small><strong>3 productos</strong><span class="danger">Requieren compra</span></div>
+        <div class="kpi-box border-warn"><small>Próximos a vencer</small><strong>7 lotes</strong><span class="warn">Salen primero (FEFO)</span></div>
+        <div class="kpi-box"><small>Órdenes de compra pendientes</small><strong>4 órdenes</strong><span>En aprobación</span></div>
+        <div class="kpi-box"><small>Solicitudes de aprobación</small><strong>6 pendientes</strong><span>Compras y descuentos</span></div>
+        <div class="kpi-box"><small>Facturas pendientes de cobro</small><strong>15 facturas</strong><span>Crédito activo</span></div>
+        <div class="kpi-box"><small>Gastos del período</small><strong>L 41,230.00</strong><span>Operativos y administrativos</span></div>
+        <div class="kpi-box highlight-kpi"><small>Ventas menos compras y gastos (mes)</small><strong>L 103,260.00</strong><span class="up">Indicador de flujo, no utilidad contable</span></div>
+      </div>
+
+      <div class="dash-2col">
+        <div class="panel-card">
+          <h3>Análisis gráfico</h3>
+          <div class="charts-grid">
+            <div class="chart-widget">
+              <h4>Ventas mensuales</h4>
+              <div class="bar-group">
+                <div class="bar-row"><span>Jul</span><div class="bar-track"><div class="bar-fill bg-g" style="width:72%">L 290k</div></div></div>
+                <div class="bar-row"><span>Ago</span><div class="bar-track"><div class="bar-fill bg-g" style="width:80%">L 315k</div></div></div>
+                <div class="bar-row"><span>Sep</span><div class="bar-track"><div class="bar-fill bg-g" style="width:68%">L 275k</div></div></div>
+                <div class="bar-row"><span>Oct</span><div class="bar-track"><div class="bar-fill bg-y" style="width:88%">L 342k</div></div></div>
+              </div>
+            </div>
+            <div class="chart-widget">
+              <h4>Antigüedad de cuentas por cobrar</h4>
+              <div class="bar-group">
+                <div class="bar-row"><span>Vigentes</span><div class="bar-track"><div class="bar-fill bg-g" style="width:62%">L 53,400</div></div></div>
+                <div class="bar-row"><span>1–30 días</span><div class="bar-track"><div class="bar-fill bg-y" style="width:24%">L 20,800</div></div></div>
+                <div class="bar-row"><span>31–60 días</span><div class="bar-track"><div class="bar-fill bg-o" style="width:10%">L 8,500</div></div></div>
+                <div class="bar-row"><span>Más de 60</span><div class="bar-track"><div class="bar-fill bg-r" style="width:4%">L 3,500</div></div></div>
+              </div>
+            </div>
+            <div class="chart-widget">
+              <h4>Productos con mayor rotación</h4>
+              <ul class="mini-rank">
+                <li>Fertilizante 20-20-20 <strong>420 sacos</strong></li>
+                <li>Ivermectina 1% 500 ml <strong>315 frascos</strong></li>
+                <li>Concentrado lechero 40 kg <strong>280 sacos</strong></li>
+              </ul>
+            </div>
+            <div class="chart-widget">
+              <h4>Inventario por categoría</h4>
+              <div class="bar-group">
+                <div class="bar-row"><span>Insumos</span><div class="bar-track"><div class="bar-fill bg-g" style="width:82%">38%</div></div></div>
+                <div class="bar-row"><span>Veterinaria</span><div class="bar-track"><div class="bar-fill bg-g" style="width:65%">29%</div></div></div>
+                <div class="bar-row"><span>Fertiliz.</span><div class="bar-track"><div class="bar-fill bg-y" style="width:50%">21%</div></div></div>
+                <div class="bar-row"><span>Herram.</span><div class="bar-track"><div class="bar-fill bg-y" style="width:28%">12%</div></div></div>
+              </div>
+            </div>
+            <div class="chart-widget">
+              <h4>Cuentas por pagar por vencimiento</h4>
+              <div class="bar-group">
+                <div class="bar-row"><span>0–7 días</span><div class="bar-track"><div class="bar-fill bg-r" style="width:42%">L 22,400</div></div></div>
+                <div class="bar-row"><span>8–30 días</span><div class="bar-track"><div class="bar-fill bg-o" style="width:58%">L 31,720</div></div></div>
+                <div class="bar-row"><span>Más de 30</span><div class="bar-track"><div class="bar-fill bg-g" style="width:2%">L 0</div></div></div>
+              </div>
+            </div>
+            <div class="chart-widget">
+              <h4>Gastos por categoría (período)</h4>
+              <div class="bar-group">
+                <div class="bar-row"><span>Servicios</span><div class="bar-track"><div class="bar-fill bg-g" style="width:62%">L 4,150</div></div></div>
+                <div class="bar-row"><span>Transporte</span><div class="bar-track"><div class="bar-fill bg-y" style="width:48%">L 3,200</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-card">
+          <h3>Alertas</h3>
+          <ul class="alerts-feed">
+            <li class="al-danger"><strong>Inventario bajo:</strong> 12 productos bajo el punto de reposición.</li>
+            <li class="al-warn"><strong>Vencimiento:</strong> lote VET-88 vence en 18 días.</li>
+            <li class="al-info"><strong>Aprobación:</strong> OC-2026-000093 espera a un administrador.</li>
+            <li class="al-danger"><strong>Factura vencida:</strong> Agropecuaria San José, 12 días de mora.</li>
+            <li class="al-warn"><strong>Pago próximo:</strong> Lab. Veterinarios CA vence en 3 días (L 22,400.00).</li>
+            <li class="al-ok"><strong>Caja:</strong> arqueo de la mañana sin diferencia.</li>
+            <li class="al-info"><strong>Nómina:</strong> planilla quincenal lista para aprobación.</li>
+            <li class="al-warn"><strong>Contabilidad:</strong> 3 comprobantes pendientes de revisión.</li>
+            <li class="al-warn"><strong>Rango fiscal:</strong> alerta cuando queden menos de 10 correlativos o falten 30 días para el vencimiento.</li>
+            <li class="al-warn"><strong>Inventario:</strong> conteo físico con 2 diferencias pendientes de ajuste.</li>
+            <li class="al-info"><strong>Vacaciones:</strong> 1 solicitud pendiente de revisión.</li>
+            <li class="al-ok"><strong>Integración:</strong> sin errores entre módulos.</li>
+            <li class="al-info"><strong>Operación observada:</strong> 1 descuento del 12% pendiente de aprobación.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTOS -->
+    <section class="erp-section sec-productos">
+      <div class="section-title-bar">
+        <div><h1>Productos y catálogo</h1><p>Bienes agrícolas, agropecuarios, insumos, perecederos y servicios.</p></div>
+        <div class="view-switcher">
+          <label for="prod-cards" class="sw-btn sw-cards">Tarjetas</label>
+          <label for="prod-table" class="sw-btn sw-table">Tabla</label>
+        </div>
+      </div>
+      <div class="chips-bar">
+        <span class="chip-cat active">Todas</span><span class="chip-cat">Insumos agropecuarios</span><span class="chip-cat">Fertilizantes</span><span class="chip-cat">Herramientas</span><span class="chip-cat">Perecederos</span><span class="chip-cat">Servicios</span>
+      </div>
+      <div class="conversion-banner">Conversión de unidades: 1 caja de 24 unidades se compra como caja y se vende por unidad. El inventario siempre se guarda en la unidad base.</div>
+
+      <div class="products-cards-grid">
+        <div class="prod-card">
+          <div class="prod-badge-stock ok">48 frascos</div>
+          <small>INT-001 · 742100984101</small>
+          <h4>Ivermectina 1% inyectable 500 ml</h4>
+          <p class="prod-cat">Insumos agropecuarios. Lote y vencimiento.</p>
+          <div class="prod-prices"><div><span>Minorista</span> <strong>L 485.00</strong></div><div><span>Mayorista</span> <strong>L 440.00</strong></div></div>
+          <small class="tax-tag">Impuesto: según clasificación fiscal configurada. Costo promedio L 310.00</small>
+        </div>
+        <div class="prod-card">
+          <div class="prod-badge-stock ok">120 sacos</div>
+          <small>INT-002 · 742100984102</small>
+          <h4>Fertilizante foliar 20-20-20 (45 kg)</h4>
+          <p class="prod-cat">Fertilizantes. Unidad base: saco.</p>
+          <div class="prod-prices"><div><span>Minorista</span> <strong>L 1,150.00</strong></div><div><span>Mayorista</span> <strong>L 1,080.00</strong></div></div>
+          <small class="tax-tag">Impuesto: según clasificación fiscal configurada. Costo promedio L 890.00</small>
+        </div>
+        <div class="prod-card">
+          <div class="prod-badge-stock low">8 unidades, bajo mínimo</div>
+          <small>INT-003 · 742100984103</small>
+          <h4>Bomba aspersora de mochila 20 L</h4>
+          <p class="prod-cat">Herramientas. Punto de reposición: 10.</p>
+          <div class="prod-prices"><div><span>Minorista</span> <strong>L 1,680.00</strong></div><div><span>Especial</span> <strong>L 1,550.00</strong></div></div>
+          <small class="tax-tag">Gravado ISV 15%. Costo promedio L 1,120.00</small>
+        </div>
+      </div>
+
+      <div class="products-table-wrap panel-card">
+        <table class="erp-table">
+          <thead><tr><th>Código</th><th>Barras</th><th>Producto</th><th>Categoría</th><th>Unidad base</th><th>Costo prom.</th><th>Minorista</th><th>Mayorista</th><th>Existencia</th><th>ISV</th></tr></thead>
+          <tbody>
+            <tr><td>INT-001</td><td><code>742100984101</code></td><td>Ivermectina 1% 500 ml</td><td>Insumos agropecuarios</td><td>Frasco (caja x 12)</td><td>L 310.00</td><td>L 485.00</td><td>L 440.00</td><td>48</td><td>Config.</td></tr>
+            <tr><td>INT-002</td><td><code>742100984102</code></td><td>Fertilizante 20-20-20</td><td>Fertilizantes</td><td>Saco 45 kg</td><td>L 890.00</td><td>L 1,150.00</td><td>L 1,080.00</td><td>120</td><td>Config.</td></tr>
+            <tr><td>INT-003</td><td><code>742100984103</code></td><td>Bomba aspersora 20 L</td><td>Herramientas</td><td>Unidad</td><td>L 1,120.00</td><td>L 1,680.00</td><td>L 1,590.00</td><td>8</td><td>15%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="panel-card mt-20">
+        <h3>Expediente: Ivermectina 1% 500 ml (INT-001)</h3>
+        <div class="eleven-tabs-nav">
+          <label for="ptab-1" class="ptab-lbl l-1">General</label><label for="ptab-2" class="ptab-lbl l-2">Existencias</label><label for="ptab-3" class="ptab-lbl l-3">Precios</label><label for="ptab-4" class="ptab-lbl l-4">Movimientos</label><label for="ptab-5" class="ptab-lbl l-5">Kardex</label><label for="ptab-6" class="ptab-lbl l-6">Compras</label><label for="ptab-7" class="ptab-lbl l-7">Ventas</label><label for="ptab-8" class="ptab-lbl l-8">Lotes</label><label for="ptab-9" class="ptab-lbl l-9">Vencimientos</label><label for="ptab-10" class="ptab-lbl l-10">Documentos</label><label for="ptab-11" class="ptab-lbl l-11">Historial</label>
+        </div>
+        <div class="ptab-panels">
+          <div class="ptab-content c-1">Marca VetAgro. Mínimo 15, máximo 100, reposición 25. Controla lotes y vencimiento.</div>
+          <div class="ptab-content c-2">Bodega central: 48 físicas, 4 reservadas, 44 disponibles. Valor: L 14,880.00.</div>
+          <div class="ptab-content c-3">Minorista L 485.00. Mayorista (10 o más) L 440.00. Especial fincas L 425.00. Descuento máximo del vendedor: 5%; más requiere aprobación.</div>
+          <div class="ptab-content c-4">Entrada por compra OC-2026-000088 (+30). Salida por venta (-6). Reserva por pedido (-4).</div>
+          <div class="ptab-content c-5">Saldo anterior 24 a L 305.00. Compra 30 a L 314.00. Nuevo promedio: L 310.00 (L 16,740.00 ÷ 54 ≈ L 310.00).</div>
+          <div class="ptab-content c-6">Proveedor: Laboratorios Veterinarios CA. Última factura: L 9,420.00.</div>
+          <div class="ptab-content c-7">112 frascos vendidos en el trimestre. Margen sobre precio: 36%.</div>
+          <div class="ptab-content c-8">Lote L-902: 28 frascos. Lote L-915: 20 frascos.</div>
+          <div class="ptab-content c-9">L-902 vence 15/03/2027 y sale primero. L-915 vence 20/11/2027.</div>
+          <div class="ptab-content c-10">Registro sanitario y ficha técnica (almacenamiento privado, con permiso).</div>
+          <div class="ptab-content c-11">Precio minorista de L 470.00 a L 485.00, autorizado por Administrador 1.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIENTES Y PROVEEDORES -->
+    <section class="erp-section sec-clientes-prov">
+      <div class="section-title-bar"><div><h1>Clientes y proveedores</h1><p>Expedientes, crédito, antigüedad de saldos y condiciones de pago.</p></div></div>
+      <div class="dash-2col">
+        <div class="panel-card">
+          <h3>Clientes</h3>
+          <table class="erp-table">
+            <thead><tr><th>Código</th><th>Cliente</th><th>Límite</th><th>Saldo</th><th>Crédito</th></tr></thead>
+            <tbody>
+              <tr><td>CLI-000</td><td><strong>Consumidor final</strong><br><small>Ventas sin RTN</small></td><td>Solo contado</td><td>L 0.00</td><td><span class="st-info">Contado</span></td></tr>
+              <tr><td>CLI-001</td><td><strong>Hacienda El Porvenir S. de R.L.</strong><br><small>RTN de ejemplo</small></td><td>L 50,000.00<br><small>30 días</small></td><td>L 18,400.00</td><td><span class="st-ok">Habilitado</span></td></tr>
+              <tr><td>CLI-002</td><td><strong>Agropecuaria San José</strong><br><small>RTN de ejemplo</small></td><td>L 25,000.00<br><small>15 días</small></td><td>L 25,000.00</td><td><span class="st-block">Bloqueado, 12 días de mora</span></td></tr>
+            </tbody>
+          </table>
+          <p class="note-box mt-12">Se bloquean las ventas a crédito si se excede el límite o hay facturas vencidas. Solo un administrador puede autorizar una excepción, y queda registrada.</p>
+        </div>
+        <div class="panel-card">
+          <h3>Proveedores</h3>
+          <table class="erp-table">
+            <thead><tr><th>Código</th><th>Proveedor</th><th>Tipo</th><th>Condición</th><th>Saldo</th></tr></thead>
+            <tbody>
+              <tr><td>PRV-01</td><td><strong>Lab. Veterinarios CA</strong></td><td>Bienes</td><td>Crédito 30 días</td><td>L 22,400.00</td></tr>
+              <tr><td>PRV-02</td><td><strong>Agroquímicos del Valle</strong></td><td>Bienes</td><td>Crédito 45 días</td><td>L 31,720.00</td></tr>
+              <tr><td>PRV-03</td><td><strong>Transportes Olancho</strong></td><td>Servicios</td><td>Contado</td><td>L 0.00</td></tr>
+            </tbody>
+          </table>
+          <p class="note-box mt-12">Los RTN y cuentas bancarias reales se capturan en el sistema y solo los ven los usuarios con permiso.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPRAS -->
+    <section class="erp-section sec-compras">
+      <div class="section-title-bar"><div><h1>Compras</h1><p>Solicitud, aprobación, orden, recepción y factura del proveedor.</p></div></div>
+      <div class="panel-card">
+        <div class="states-flow">
+          <span>Borrador</span><span>Pendiente de aprobación</span><span class="active-step">Aprobada</span><span>Enviada</span><span>Parcialmente recibida</span><span>Recibida</span><span>Cerrada</span>
+        </div>
+        <table class="erp-table mt-16">
+          <thead><tr><th>Orden</th><th>Solicitud</th><th>Proveedor</th><th>Entrega</th><th>Total</th><th>Estado</th><th>Recepción</th></tr></thead>
+          <tbody>
+            <tr><td><strong>OC-2026-000092</strong></td><td>SOL-2026-000104</td><td>Agroquímicos del Valle</td><td>25/11/2026</td><td>L 48,500.00</td><td><span class="st-ok">Aprobada</span></td><td>Pendiente</td></tr>
+            <tr><td><strong>OC-2026-000091</strong></td><td>SOL-2026-000103</td><td>Lab. Veterinarios CA</td><td>20/11/2026</td><td>L 22,400.00</td><td><span class="st-warn">Parcialmente recibida</span></td><td>45 de 50 aceptadas, 5 dañadas</td></tr>
+            <tr><td><strong>OC-2026-000093</strong></td><td>SOL-2026-000105</td><td>Insumos Ganaderos HN</td><td>28/11/2026</td><td>L 15,800.00</td><td><span class="st-info">Pendiente de aprobación</span></td><td>Aún no aplica</td></tr>
+          </tbody>
+        </table>
+        <p class="note-box mt-12">Quien solicita no aprueba su propia solicitud, aunque sea administrador. El inventario sube solo por lo aceptado en la recepción. El sistema compara orden, recepción y factura y marca las diferencias.</p>
+      </div>
+    </section>
+
+    <!-- INVENTARIO -->
+    <section class="erp-section sec-inventario">
+      <div class="section-title-bar"><div><h1>Inventario y bodega</h1><p>Existencias, Kardex, lotes, conteos físicos y traslados.</p></div></div>
+      <div class="dash-2col">
+        <div class="panel-card">
+          <h3>Promedio ponderado móvil</h3>
+          <div class="weighted-example">
+            <div class="w-step"><span>Compra 1:</span> 100 × L 100.00 = <strong>L 10,000.00</strong></div>
+            <div class="w-step"><span>Compra 2:</span> 50 × L 120.00 = <strong>L 6,000.00</strong></div>
+            <div class="w-step highlight"><span>Nuevo promedio:</span> L 16,000.00 ÷ 150 = <strong>L 106.6667</strong></div>
+            <div class="w-step"><span>Venta de 30:</span> 30 × L 106.6667 = <strong>L 3,200.00</strong></div>
+            <div class="w-step total"><span>Saldo:</span> 120 unidades por <strong>L 12,800.00</strong></div>
+          </div>
+          <p class="note-box mt-12">El costo promedio se calcula por bodega. En un traslado, la bodega destino recalcula su promedio con el costo de origen.</p>
+        </div>
+        <div class="panel-card">
+          <h3>Kardex (sin edición directa)</h3>
+          <div class="bodega-strip"><strong>BOD-01 Bodega central, Guaimaca.</strong> Las correcciones se hacen con ajustes autorizados.</div>
+          <table class="erp-table mt-12">
+            <thead><tr><th>Fecha</th><th>Documento</th><th>Movimiento</th><th>Entrada</th><th>Salida</th><th>Saldo</th><th>Costo unit.</th></tr></thead>
+            <tbody>
+              <tr><td>10/11/26</td><td>OC-2026-000085</td><td>Compra</td><td>100</td><td>0</td><td>100</td><td>L 100.0000</td></tr>
+              <tr><td>15/11/26</td><td>OC-2026-000089</td><td>Compra</td><td>50</td><td>0</td><td>150</td><td>L 106.6667</td></tr>
+              <tr><td>21/11/26</td><td>VEN-2026-000014</td><td>Venta</td><td>0</td><td>30</td><td>120</td><td>L 106.6667</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- VENTAS Y POS -->
+    <section class="erp-section sec-ventas-pos">
+      <div class="section-title-bar"><div><h1>Ventas y punto de venta</h1><p>Contado, crédito, descuentos autorizados, cotizaciones y pedidos.</p></div></div>
+      <div class="pos-layout">
+        <div class="panel-card">
+          <h3>Terminal POS</h3>
+          <div class="pos-search-bar">
+            <input type="text" placeholder="Escanea el código de barras o busca un producto">
+            <span class="btn-mini-green">Cotizaciones</span><span class="btn-mini-blue">Pedidos</span>
+          </div>
+          <div class="pos-items-grid mt-12">
+            <div class="pos-tile"><span>Ivermectina 1% 500 ml</span><strong>L 485.00</strong><small>Existencia 48</small></div>
+            <div class="pos-tile"><span>Fertilizante 20-20-20</span><strong>L 1,150.00</strong><small>Existencia 120</small></div>
+            <div class="pos-tile"><span>Bomba aspersora 20 L</span><strong>L 1,680.00</strong><small>Existencia 8, ISV 15%</small></div>
+            <div class="pos-tile"><span>Concentrado lechero</span><strong>L 620.00</strong><small>Existencia 75</small></div>
+          </div>
+        </div>
+        <div class="panel-card pos-cart-panel">
+          <h3>Venta actual</h3>
+          <div class="cart-client-box"><small>Cliente</small><strong>Hacienda El Porvenir S. de R.L.</strong><small>Crédito disponible: L 31,600.00. Sin cliente, se usa Consumidor final.</small></div>
+          <table class="erp-table mt-12">
+            <thead><tr><th>Producto</th><th>Cant.</th><th>Precio</th><th>Subtotal</th></tr></thead>
+            <tbody>
+              <tr><td>Bomba aspersora 20 L (gravado)</td><td>2</td><td>L 1,680.00</td><td>L 3,360.00</td></tr>
+              <tr><td>Ivermectina 1% 500 ml (exento)</td><td>4</td><td>L 485.00</td><td>L 1,940.00</td></tr>
+            </tbody>
+          </table>
+          <div class="cart-summary">
+            <div><span>Subtotal antes de impuestos</span> <strong>L 5,300.00</strong></div>
+            <div><span>Descuento</span> <strong>L 0.00</strong></div>
+            <div><span>ISV 15% sobre L 3,360.00</span> <strong>L 504.00</strong></div>
+            <div class="cart-total"><span>Total</span> <strong>L 5,804.00</strong></div>
+          </div>
+          <div class="payment-methods">
+            <span>Forma de pago</span>
+            <div class="pay-pills"><span class="active">Efectivo</span><span>Transferencia</span><span>Cheque</span><span>Crédito</span><span>Combinado</span></div>
+          </div>
+          <label for="mod-facturacion" class="btn-submit-erp mt-12">Confirmar venta y facturar</label>
+        </div>
+      </div>
+    </section>
+
+    <!-- FACTURACIÓN -->
+    <section class="erp-section sec-facturacion">
+      <div class="section-title-bar">
+        <div><h1>Facturación fiscal</h1><p>Correlativos, ISV, notas de crédito y de débito.</p></div>
+        <div class="sar-format-bar">
+          <label for="sar-carta" class="sfmt-btn btn-scarta">Carta</label>
+          <label for="sar-media" class="sfmt-btn btn-smedia">Media carta</label>
+          <label for="sar-ticket" class="sfmt-btn btn-sticket">Ticket térmico</label>
+        </div>
+      </div>
+      <div class="dash-2col">
+        <div class="panel-card">
+          <h3>Parámetros fiscales</h3>
+          <p class="note-box">Los datos de abajo son de ejemplo. No se habilita la emisión hasta validar CAI, rango y fecha límite contra la autorización vigente del SAR.</p>
+          <ul class="sar-list mt-12">
+            <li><strong>Razón social:</strong> Grupo Mefra S. de R.L.</li>
+            <li><strong>Dirección:</strong> Barrio Suyapa, Guaimaca, Francisco Morazán.</li>
+            <li><strong>CAI:</strong> <code>XXXXXX-XXXXXX-XXXXXX-XXXXXX-XXXXXX-XX</code> (pendiente de captura)</li>
+            <li><strong>Rango de ejemplo:</strong> <code>000-000-01-00000001</code> al <code>000-000-01-00000050</code></li>
+            <li><strong>Fecha límite de emisión:</strong> 04/05/2027</li>
+            <li><strong>Impuestos:</strong> ISV 15%, exentos y otras tasas solo si una disposición legal las exige. Precios antes de impuestos.</li>
+            <li><strong>Documentos con rango propio:</strong> factura, nota de crédito, nota de débito.</li>
+          </ul>
+          <div class="nc-panel mt-16">
+            <h4>Anulaciones</h4>
+            <p>Nunca se borra una factura emitida. Se corrige con nota de crédito o de débito vinculada a la original, con motivo y autorización. El correlativo se asigna dentro de una transacción para evitar duplicados.</p>
+          </div>
+        </div>
+        <div class="sar-preview-stage">
+          <div class="sar-document doc-carta">
+            <div class="sar-copy-banner">Original: cliente. Copia: emisor.</div>
+            <div class="sar-doc-head">
+              <div class="sar-company-col">
+                <img src="image_1e2326.png" alt="Logotipo de Grupo Mefra" class="invoice-logo">
+                <strong>Grupo Mefra S. de R.L.</strong>
+                <span>Barrio Suyapa, Guaimaca, Francisco Morazán</span>
+                <span>RTN: se imprime el RTN real configurado</span>
+              </div>
+              <div class="sar-meta-col">
+                <div class="fac-title">FACTURA</div>
+                <strong>No. 000-000-01-00000015</strong>
+                <small>Fecha: 21/11/2026</small>
+                <small>CAI: pendiente de captura</small>
+                <small>Rango: 000-000-01-00000001 al 000-000-01-00000050</small>
+                <small class="deadline-red">Fecha límite de emisión: 04/05/2027</small>
+              </div>
+            </div>
+            <div class="sar-client-row">
+              <div><strong>Cliente:</strong> Hacienda El Porvenir S. de R.L.</div>
+              <div><strong>Forma de pago:</strong> Contado</div>
+            </div>
+            <table class="sar-items-tbl">
+              <thead><tr><th>Cant.</th><th>Descripción</th><th>P. unit.</th><th>Desc.</th><th>Subtotal</th></tr></thead>
+              <tbody>
+                <tr><td>2</td><td>Bomba aspersora 20 L (gravado 15%)</td><td>L 1,680.00</td><td>L 0.00</td><td>L 3,360.00</td></tr>
+                <tr><td>4</td><td>Ivermectina 1% 500 ml (exento)</td><td>L 485.00</td><td>L 0.00</td><td>L 1,940.00</td></tr>
+              </tbody>
+            </table>
+            <div class="sar-totals-block">
+              <div class="total-words"><strong>Son:</strong> cinco mil ochocientos cuatro lempiras con 00/100.</div>
+              <div class="total-numbers">
+                <div><span>Importe exento</span> <strong>L 1,940.00</strong></div>
+                <div><span>Importe gravado 15%</span> <strong>L 3,360.00</strong></div>
+                <div><span>ISV 15%</span> <strong>L 504.00</strong></div>
+                <div class="grand-hnl"><span>Total a pagar</span> <strong>L 5,804.00</strong></div>
+              </div>
+            </div>
+            <div class="sar-legal-footer"><p><strong>“LA FACTURA ES BENEFICIO DE TODOS” ¡EXÍJALA!</strong></p></div>
+          </div>
+
+          <div class="sar-document doc-media">
+            <div class="sar-copy-banner">Original: cliente. Copia: emisor.</div>
+            <div class="sar-doc-head">
+              <div class="sar-company-col"><strong>Grupo Mefra S. de R.L.</strong><span>Barrio Suyapa, Guaimaca</span><span>RTN configurado</span></div>
+              <div class="sar-meta-col"><div class="fac-title">FACTURA</div><strong>No. 000-000-01-00000015</strong><small>21/11/2026</small><small>CAI: pendiente de captura</small></div>
+            </div>
+            <div class="sar-client-row"><div><strong>Cliente:</strong> Hacienda El Porvenir S. de R.L.</div><div><strong>Pago:</strong> Contado</div></div>
+            <table class="sar-items-tbl">
+              <thead><tr><th>Cant.</th><th>Descripción</th><th>Subtotal</th></tr></thead>
+              <tbody>
+                <tr><td>2</td><td>Bomba aspersora 20 L (gravado)</td><td>L 3,360.00</td></tr>
+                <tr><td>4</td><td>Ivermectina 1% 500 ml (exento)</td><td>L 1,940.00</td></tr>
+              </tbody>
+            </table>
+            <div class="total-numbers">
+              <div><span>Exento</span> <strong>L 1,940.00</strong></div>
+              <div><span>Gravado 15%</span> <strong>L 3,360.00</strong></div>
+              <div><span>ISV 15%</span> <strong>L 504.00</strong></div>
+              <div class="grand-hnl"><span>Total</span> <strong>L 5,804.00</strong></div>
+            </div>
+            <div class="sar-legal-footer"><p>Rango 000-000-01-00000001 al 000-000-01-00000050. Límite 04/05/2027.</p><p><strong>“LA FACTURA ES BENEFICIO DE TODOS” ¡EXÍJALA!</strong></p></div>
+          </div>
+
+          <div class="sar-document doc-ticket">
+            <div class="tk-center"><strong>GRUPO MEFRA S. DE R.L.</strong><br>Barrio Suyapa, Guaimaca<br>RTN configurado<br>Factura 000-000-01-00000015<br>21/11/2026<br>CAI: pendiente de captura</div>
+            <hr>
+            <div class="tk-row"><span>Cliente</span><span>Hacienda El Porvenir</span></div>
+            <div class="tk-row"><span>Pago</span><span>Contado</span></div>
+            <hr>
+            <div class="tk-row"><span>2 x Bomba aspersora 20 L</span><span>3,360.00</span></div>
+            <div class="tk-row"><span>4 x Ivermectina 500 ml</span><span>1,940.00</span></div>
+            <hr>
+            <div class="tk-row"><span>Exento</span><span>1,940.00</span></div>
+            <div class="tk-row"><span>Gravado 15%</span><span>3,360.00</span></div>
+            <div class="tk-row"><span>ISV 15%</span><span>504.00</span></div>
+            <div class="tk-row tk-total"><span>TOTAL L</span><span>5,804.00</span></div>
+            <hr>
+            <div class="tk-center">Rango 000-000-01-00000001<br>al 000-000-01-00000050<br>Límite 04/05/2027<br><strong>“LA FACTURA ES BENEFICIO DE TODOS” ¡EXÍJALA!</strong><br>Original: cliente. Copia: emisor.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINANZAS -->
+    <section class="erp-section sec-finanzas">
+      <div class="section-title-bar"><div><h1>Caja, bancos, cuentas por cobrar y pagar, gastos</h1><p>Efectivo, conciliación, antigüedad de saldos y gastos operativos.</p></div></div>
+      <div class="fin-tabs-bar">
+        <label for="fin-caja" class="ftab-btn fb-caja">Caja</label>
+        <label for="fin-bancos" class="ftab-btn fb-bancos">Bancos</label>
+        <label for="fin-cxc" class="ftab-btn fb-cxc">Por cobrar</label>
+        <label for="fin-cxp" class="ftab-btn fb-cxp">Por pagar</label>
+        <label for="fin-gastos" class="ftab-btn fb-gastos">Gastos</label>
+      </div>
+
+      <div class="fin-panel fp-caja panel-card">
+        <h3>Apertura, movimientos y cierre de caja</h3>
+        <div class="kpi-16-grid">
+          <div class="kpi-box"><small>Fondo inicial</small><strong>L 1,000.00</strong><span>Configurable</span></div>
+          <div class="kpi-box"><small>Ventas en efectivo y cobros</small><strong>L 19,250.00</strong><span>Turno actual</span></div>
+          <div class="kpi-box"><small>Salidas y gastos menores</small><strong>L 800.00</strong><span>Con respaldo</span></div>
+          <div class="kpi-box highlight-kpi"><small>Esperado en caja</small><strong>L 19,450.00</strong><span>Contado L 19,450.00. Diferencia L 0.00</span></div>
+        </div>
+      </div>
+
+      <div class="fin-panel fp-bancos panel-card">
+        <h3>Cuentas bancarias y conciliación</h3>
+        <table class="erp-table">
+          <thead><tr><th>Banco</th><th>Tipo</th><th>Moneda</th><th>Saldo en libros</th><th>Saldo en banco</th><th>Conciliación</th></tr></thead>
+          <tbody>
+            <tr><td>Banco Atlántida</td><td>Cheques</td><td>L</td><td>L 285,400.00</td><td>L 285,400.00</td><td><span class="st-ok">Conciliada</span></td></tr>
+            <tr><td>BAC Credomatic</td><td>Ahorro</td><td>L</td><td>L 127,280.00</td><td>L 127,280.00</td><td><span class="st-ok">Conciliada</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fin-panel fp-cxc panel-card">
+        <h3>Cuentas por cobrar</h3>
+        <table class="erp-table">
+          <thead><tr><th>Cliente</th><th>Factura</th><th>Emisión</th><th>Vence</th><th>Total</th><th>Abonos</th><th>Saldo</th><th>Mora</th></tr></thead>
+          <tbody>
+            <tr><td>Hacienda El Porvenir</td><td>000-000-01-00000010</td><td>05/11/26</td><td>05/12/26</td><td>L 25,000.00</td><td>L 6,600.00</td><td>L 18,400.00</td><td><span class="st-ok">Vigente</span></td></tr>
+            <tr><td>Agropecuaria San José</td><td>000-000-01-00000004</td><td>25/10/26</td><td>09/11/26</td><td>L 25,000.00</td><td>L 0.00</td><td>L 25,000.00</td><td><span class="st-block">12 días</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fin-panel fp-cxp panel-card">
+        <h3>Cuentas por pagar</h3>
+        <table class="erp-table">
+          <thead><tr><th>Proveedor</th><th>Factura</th><th>Vence</th><th>Total</th><th>Saldo</th><th>Pago</th></tr></thead>
+          <tbody>
+            <tr><td>Lab. Veterinarios CA</td><td>F-99210</td><td>24/11/2026</td><td>L 22,400.00</td><td>L 22,400.00</td><td><span class="st-ok">Aprobado</span></td></tr>
+            <tr><td>Agroquímicos del Valle</td><td>F-44102</td><td>15/12/2026</td><td>L 31,720.00</td><td>L 31,720.00</td><td><span class="st-info">Programado</span></td></tr>
+          </tbody>
+        </table>
+        <p class="note-box mt-12">El sistema rechaza una factura de proveedor repetida (mismo proveedor y número).</p>
+      </div>
+
+      <div class="fin-panel fp-gastos panel-card">
+        <h3>Gastos operativos y administrativos</h3>
+        <table class="erp-table">
+          <thead><tr><th>Gasto</th><th>Categoría</th><th>Descripción</th><th>Centro de costo</th><th>Base</th><th>ISV</th><th>Total</th><th>Estado</th></tr></thead>
+          <tbody>
+            <tr><td>GAS-2026-000041</td><td>Transporte</td><td>Combustible del camión de reparto</td><td>Logística</td><td>L 3,200.00</td><td>L 0.00</td><td>L 3,200.00</td><td><span class="st-ok">Aprobado</span></td></tr>
+            <tr><td>GAS-2026-000042</td><td>Servicios públicos</td><td>Energía eléctrica de la bodega</td><td>Administración</td><td>L 4,150.00</td><td>L 0.00</td><td>L 4,150.00</td><td><span class="st-ok">Aprobado</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- CONTABILIDAD -->
+    <section class="erp-section sec-contabilidad">
+      <div class="section-title-bar">
+        <div><h1>Contabilidad manual y activos fijos</h1><p>El contador elabora los comprobantes a partir de los documentos de origen. Nada se contabiliza solo.</p></div>
+        <span class="badge-green">Período noviembre 2026: abierto</span>
+      </div>
+      <div class="dash-2col">
+        <div class="panel-card">
+          <h3>Comprobante de diario CD-2026-000118</h3>
+          <div class="voucher-header"><span>Origen: VEN-2026-000015</span><span class="st-ok">Contabilizado</span></div>
+          <table class="erp-table mt-12">
+            <thead><tr><th>Cuenta</th><th>Nombre</th><th>Débito</th><th>Crédito</th></tr></thead>
+            <tbody>
+              <tr><td>1101-01</td><td>Caja general</td><td>L 5,804.00</td><td>L 0.00</td></tr>
+              <tr><td>4101-01</td><td>Ventas</td><td>L 0.00</td><td>L 5,300.00</td></tr>
+              <tr><td>2104-01</td><td>ISV por pagar</td><td>L 0.00</td><td>L 504.00</td></tr>
+            </tbody>
+            <tfoot><tr class="voucher-sum"><td colspan="2"><strong>Sumas iguales</strong></td><td><strong>L 5,804.00</strong></td><td><strong>L 5,804.00</strong></td></tr></tfoot>
+          </table>
+          <p class="note-box mt-12">Falta el asiento de costo de ventas contra inventario. El contador lo registra en un comprobante aparte.</p>
+        </div>
+        <div class="panel-card">
+          <h3>Activos fijos (depreciación en línea recta, 12 meses)</h3>
+          <table class="erp-table">
+            <thead><tr><th>Código</th><th>Activo</th><th>Costo</th><th>Vida útil</th><th>Mensual</th><th>Valor en libros</th></tr></thead>
+            <tbody>
+              <tr><td>AF-001</td><td>Camión de carga</td><td>L 650,000.00</td><td>5 años</td><td>L 10,833.33</td><td>L 520,000.04</td></tr>
+              <tr><td>AF-002</td><td>Equipo POS y lectores</td><td>L 85,000.00</td><td>3 años</td><td>L 2,361.11</td><td>L 56,666.68</td></tr>
+            </tbody>
+          </table>
+          <p class="note-box mt-12">Los parámetros contables y fiscales de depreciación se configuran por separado.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RRHH -->
+    <section class="erp-section sec-rrhh">
+      <div class="section-title-bar">
+        <div><h1>Personal y nómina</h1><p>Acceso restringido. Los datos personales y salariales solo los ve quien tenga permiso explícito.</p></div>
+        <span class="badge-red">Confidencial</span>
+      </div>
+      <div class="panel-card">
+        <h3>Planilla quincenal (ejemplo)</h3>
+        <table class="erp-table">
+          <thead><tr><th>Código</th><th>Cargo</th><th>Salario base</th><th>Extras y bonos</th><th>Deducciones</th><th>Neto</th></tr></thead>
+          <tbody>
+            <tr><td>EMP-01</td><td>Gerente general</td><td>L 28,000.00</td><td>L 0.00</td><td>L 1,450.00</td><td>L 26,550.00</td></tr>
+            <tr><td>EMP-02</td><td>Jefe de operaciones</td><td>L 24,000.00</td><td>L 0.00</td><td>L 1,280.00</td><td>L 22,720.00</td></tr>
+            <tr><td>EMP-03</td><td>Asesor de ventas</td><td>L 14,500.00</td><td>L 1,850.00</td><td>L 780.00</td><td>L 15,570.00</td></tr>
+            <tr><td>EMP-04</td><td>Contador</td><td>L 22,000.00</td><td>L 0.00</td><td>L 1,190.00</td><td>L 20,810.00</td></tr>
+          </tbody>
+        </table>
+        <p class="note-box mt-12">Las deducciones (IHSS, RAP, ISR y otras) y las prestaciones se configuran según la ley vigente y las revisa un contador o asesor laboral antes de aprobar la planilla. Los valores mostrados son ilustrativos.</p>
+      </div>
+    </section>
+
+    <!-- REPORTES Y ENVÍOS -->
+    <section class="erp-section sec-reportes">
+      <div class="section-title-bar"><div><h1>Reportes y envíos automáticos</h1><p>Reporte diario de ventas del día anterior, hora de Honduras.</p></div></div>
+      <div class="dash-2col">
+        <div class="panel-card">
+          <h3>Programación</h3>
+          <ul class="sar-list">
+            <li><strong>Reporte diario:</strong> activo, se genera a las 06:00 con ventas confirmadas del día anterior.</li>
+            <li><strong>Destinatarios:</strong> definidos por tipo de reporte, con copias, editables sin intervención técnica.</li>
+            <li><strong>Adjuntos:</strong> PDF y, si se activa, Excel.</li>
+            <li><strong>Asunto:</strong> Reporte diario de ventas – Grupo Mefra – [fecha].</li>
+            <li><strong>Contenido:</strong> ventas brutas y netas, descuentos, devoluciones, ISV por tasa, contado y crédito, formas de pago, vendedor, cliente, producto, cobros (separados de las ventas) y facturas anuladas.</li>
+            <li><strong>Reintentos:</strong> si falla el correo, se registra el error, se alerta y se reintenta según la política. El reporte siempre queda disponible en el ERP.</li>
+            <li><strong>Excluye:</strong> operaciones duplicadas, anuladas o pendientes de aprobación.</li>
+          </ul>
+        </div>
+        <div class="panel-card">
+          <h3>Historial de envíos</h3>
+          <table class="erp-table">
+            <thead><tr><th>Reporte</th><th>Generado</th><th>Enviado</th><th>Estado</th></tr></thead>
+            <tbody>
+              <tr><td>Ventas 20/11/2026</td><td>21/11 06:00</td><td>21/11 06:01</td><td><span class="st-ok">Enviado</span></td></tr>
+              <tr><td>Ventas 19/11/2026</td><td>20/11 06:00</td><td>Reintento 2</td><td><span class="st-warn">Reintentando</span></td></tr>
+              <tr><td>Ventas 18/11/2026</td><td>19/11 06:00</td><td>19/11 06:01</td><td><span class="st-ok">Enviado</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADMINISTRACIÓN -->
+    <section class="erp-section sec-admin">
+      <div class="section-title-bar"><div><h1>Usuarios, aprobaciones y bitácora</h1><p>Cuatro usuarios iniciales, permisos por acción y trazabilidad.</p></div></div>
+      <div class="dash-2col">
+        <div class="panel-card">
+          <h3>Usuarios</h3>
+          <table class="erp-table">
+            <thead><tr><th>Usuario</th><th>Rol</th><th>Sucursal</th><th>Estado</th><th>Último acceso</th></tr></thead>
+            <tbody>
+              <tr><td><strong>admin1</strong></td><td><span class="st-ok">Administrador</span></td><td>Guaimaca</td><td>Activo</td><td>21/11/2026 15:05</td></tr>
+              <tr><td><strong>admin2</strong></td><td><span class="st-ok">Administrador</span></td><td>Guaimaca</td><td>Activo</td><td>21/11/2026 11:20</td></tr>
+              <tr><td><strong>vendedor1</strong></td><td><span class="st-warn">Vendedor</span></td><td>Guaimaca</td><td>Activo</td><td>21/11/2026 14:58</td></tr>
+              <tr><td><strong>contador1</strong></td><td><span class="st-info">Contador</span></td><td>Guaimaca</td><td>Activo</td><td>21/11/2026 13:40</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel-card">
+          <h3>Permisos por rol</h3>
+          <table class="erp-table">
+            <thead><tr><th>Acción</th><th>Admin</th><th>Vendedor</th><th>Contador</th></tr></thead>
+            <tbody>
+              <tr><td>Ver, crear y modificar</td><td>Todo</td><td>Comercial</td><td>Contable</td></tr>
+              <tr><td>Solicitar anulación</td><td>Autoriza</td><td>Solicita</td><td>Revisa</td></tr>
+              <tr><td>Aprobar y rechazar</td><td>Todo, menos lo propio</td><td>No</td><td>Comprobantes</td></tr>
+              <tr><td>Exportar e imprimir</td><td>Todo</td><td>Facturas</td><td>Reportes</td></tr>
+              <tr><td>Datos confidenciales de RR. HH.</td><td>Con permiso</td><td>No</td><td>Solo nómina</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="panel-card mt-20">
+        <h3>Bitácora de auditoría (solo lectura)</h3>
+        <table class="erp-table">
+          <thead><tr><th>Fecha y hora</th><th>Usuario</th><th>Módulo</th><th>Acción</th><th>Detalle</th></tr></thead>
+          <tbody>
+            <tr><td>21/11/2026 15:05</td><td>admin1</td><td>Seguridad</td><td>Inicio de sesión exitoso</td><td>IP registrada, HTTPS</td></tr>
+            <tr><td>21/11/2026 14:42</td><td>vendedor1</td><td>Facturación</td><td>Factura emitida</td><td>000-000-01-00000015, L 5,804.00</td></tr>
+            <tr><td>21/11/2026 13:55</td><td>contador1</td><td>Contabilidad</td><td>Comprobante contabilizado</td><td>CD-2026-000118, débito igual a crédito</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+</div>
+
 </body>
 </html>
